@@ -26,8 +26,8 @@
                             }
 
                             switch ($source) {
-                                case "34":
-                                    echo "Nice";
+                                case "add_post":
+                                    include "includes/add_post.php";
                                     break;
                                 case "100":
                                     echo "Nice 100";
