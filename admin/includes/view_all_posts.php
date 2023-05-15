@@ -41,18 +41,23 @@
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td>{$post_date}</td>";
+            echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
         }
     ?>
-        <th>10</th>
-        <th>Edwin Diaz</th>
-        <th>Bootstrap framework</th>
-        <th>Bootstrap</th>
-        <th>Status</th>
-        <th>Image</th>
-        <th>Tags</th>
-        <th>Comments</th>
-        <th>Date</th>
+
 </tbody>
 
 </table>
+
+
+<?php
+    if (isset($_GET["delete"])) {
+        $the_post_id = $_GET["delete"];
+
+        $query = "delete from posts where post_id = {$the_post_id}";
+        $delete_query = mysqli_query($connection, $query);
+    }
+
+
+?>
