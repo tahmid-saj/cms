@@ -85,6 +85,15 @@ include "includes/navigation.php";
                     if (!$create_comment_query) {
                         die("Query failed " . mysqli_error($connection));
                     }
+
+                    
+                    $query = "update posts set post_comment_count = post_comment_count + 1";
+                    $query .= " where post_id = $the_post_id";
+
+                    $update_comment_count = mysqli_query($connection, $query);
+
+                    
+
                 }
 
             ?>
@@ -127,7 +136,7 @@ include "includes/navigation.php";
                     }
 
                     while ($row = mysqli_fetch_assoc($select_comment_query)) {
-                        $comment_date = $row["comment_date"];
+                        $comment_status = $row["comment_status"];
                         $comment_content = $row["comment_content"];
                         $comment_author = $row["comment_author"];
 
@@ -148,7 +157,7 @@ include "includes/navigation.php";
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author;?>
-                            <small><?php echo $comment_date;?></small>
+                            <!-- <small><?php echo $comment_status;?></small> -->
                         </h4>
                     
                         <?php echo $comment_author; ?>
