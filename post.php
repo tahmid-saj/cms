@@ -77,9 +77,14 @@ include "includes/navigation.php";
                     $query = "insert into comments (comment_post_id, comment_author, 
                             comment_email, comment_content, comment_status, comment_date)";
                         
-                    $query .= "values ($the_post_id, '$comment_author', 
+                    $query .= " values ($the_post_id, '$comment_author', 
                             '$comment_email', '$comment_content', 'unapproved', now())";
                     
+                    $create_comment_query = mysqli_query($connection, $query);
+
+                    if (!$create_comment_query) {
+                        die("Query failed " . mysqli_error($connection));
+                    }
                 }
 
             ?>
