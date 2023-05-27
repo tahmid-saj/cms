@@ -59,7 +59,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i>Comments</a>
+                        <a href="comments.php"><i class="fa fa-fw fa-file"></i>Comments</a>
                     </li>
 
                     <li>
