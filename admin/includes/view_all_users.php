@@ -15,17 +15,19 @@
 <tbody>
 
     <?php
-        $query = "select * from comments";
-        $select_comments = mysqli_query($connection, $query);
+        $query = "select * from users";
+        $select_users = mysqli_query($connection, $query);
 
-        while ($row = mysqli_fetch_assoc($select_comments)) {
-            $comment_id = $row['comment_id'];
-            $comment_post_id = $row['comment_post_id'];
-            $comment_author = $row['comment_author'];
-            $comment_email = $row['comment_email'];
-            $comment_content = $row['comment_content'];
-            $comment_status = $row['comment_status'];
-            $comment_date = $row['comment_date'];
+        while ($row = mysqli_fetch_assoc($select_users)) {
+            $user_id = $row['user_id'];
+            $username = $row['username'];
+            $user_password = $row['user_password'];
+            $user_firstname = $row['user_firstname'];
+            $user_lastname = $row['user_lastname'];
+            $user_email = $row['user_email'];
+            $user_image = $row['user_image'];
+            $user_role = $row['user_role'];
+
 
             // $query = "select * from comments where comment_post_id = {$comment_post_id}";
             // $select_categories_id = mysqli_query($connection, $query);
