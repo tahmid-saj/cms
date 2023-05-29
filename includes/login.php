@@ -12,8 +12,13 @@ if (isset($_POST["login"])) {
     $select_user_query = mysqli_query($connection, $query);
 
     if (!$select_user_query) {
-        die("Query failed");
+        die("Query failed" . mysqli_error($connection));
     }
+
+}
+
+while ($row = mysqli_fetch_assoc($select_user_query)) {
+    $db_id = $row["user_id"];
 
 }
 
