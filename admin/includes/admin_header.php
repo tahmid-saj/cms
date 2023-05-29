@@ -2,6 +2,8 @@
 <?php include "../includes/db.php";?>
 <?php include "functions.php";?>
 
+session_start();
+
 <!DOCTYPE html>
 <html lang="en">
 

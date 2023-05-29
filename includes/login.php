@@ -1,6 +1,8 @@
 <?php 
 include "db.php";
 
+session_start();
+
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -30,6 +32,12 @@ while ($row = mysqli_fetch_assoc($select_user_query)) {
 if ($username !== $db_username && $password !== $db_user_password) {
     header("Location: ../header.php");
 } else if ($username == $db_username && $password == $db_user_password) {
+    $_SESSION["username"] = $db_username;
+    $_SESSION["user_firstname"] = $db_user_firstname;
+    $_SESSION["user_lastname"] = $db_user_lastname;
+    $_SESSION["user_role"] = $db_user_role;
+
+
     header("Location: ..admin");
 } else {
     header("Location: ../index.php")
