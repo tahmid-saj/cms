@@ -1,5 +1,26 @@
 <?php include "includes/admin_header.php";?>
 
+<?php
+    if (isset($_SESSION["username"])) {
+        $username = $_SESSION["username"];
+        $query = "select * from users where username = '{$username}'";
+
+        $select_user_profile_query = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_array($select_user_profile_query)) {
+
+            $user_id = $row['user_id'];
+            $username = $row['username'];
+            $user_password = $row['user_password'];
+            $user_firstname = $row['user_firstname'];
+            $user_lastname = $row['user_lastname'];
+            $user_email = $row['user_email'];
+            $user_image = $row['user_image'];
+            $user_role = $row['user_role'];
+        }
+    }
+?>
+
 
     <div id="wrapper">
 
@@ -73,7 +94,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="edit_user" value="Edit User">
+                                <input class="btn btn-primary" type="submit" name="edit_user" value="Update Profile">
                             </div>
 
                         </form>
