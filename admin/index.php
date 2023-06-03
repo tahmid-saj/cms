@@ -163,6 +163,12 @@
                 </div>
                                 <!-- /.row -->
 
+                <?php
+                    $query = "select * from posts where post_status = 'published";
+                    $select_all_published_posts = mysqli_query($connection, $query);
+                    $post_published_count = mysqli_num_rows($select_all_published_posts);
+                ?>
+
                 <div class="row">
                 <script type="text/javascript">
                     google.charts.load("current", {packages:['corechart']});
