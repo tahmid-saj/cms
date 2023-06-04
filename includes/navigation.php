@@ -35,12 +35,20 @@
                     <li>
                         <a href="admin">Admin</a>
                     </li>
-                    <!-- <li>
+                    <li>
                         <a href="#">Services</a>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li> -->
+
+                    <?php
+                        if (isset($_SESSION["user_role"])) {
+                            if (isset($_GET["p_id"])) {
+                                $the_post_id = $_GET["p_id"];
+
+                                echo "<l1> <a href='admin/posts.php?source=edit_post&p_id='{$the_post_id}'>
+                                Edit post</a> </li>";
+                            }
+                        }
+                    ?>
 
 
                 </ul>
