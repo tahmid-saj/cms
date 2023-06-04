@@ -25,6 +25,7 @@ if (isset($_POST["submit"])) {
     
         $row = mysqli_fetch_array($select_randsalt_query);
         $salt = $row["randSalt"];
+        $password = crypt($password, $salt);
     
         $query = "insert into users (username, user_email, user_password, user_role) ";
         $query .= "values('{$username}', '{$email}', '{$password}', 'subscriber')";
