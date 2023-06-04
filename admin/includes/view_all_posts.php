@@ -145,5 +145,6 @@ if (isset($_POST["checkBoxArray"])) {
         header("Location: posts.php");
     }
 
-
+include "admin_footer.php";
 ?>
+
