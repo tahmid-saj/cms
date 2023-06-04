@@ -22,9 +22,10 @@ include "includes/navigation.php";
 
                 if (isset($_GET["p_id"])) {
                     $the_post_id = $_GET["p_id"];
+                    $the_post_author = $_GET["author"];
                 }
 
-                $query = "select * from posts where post_id = $the_post_id";
+                $query = "select * from posts where post_author = '{$the_post_author}' and post_id = $the_post_id";
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
