@@ -12,8 +12,21 @@ if (isset($_POST["checkBoxArray"])) {
                 $update_to_published_status = mysqli_query($connection, $query);
                 confirmQuery($update_to_published_status);
                 break;
+            case "draft":
+                $query = "update posts set post_status = '{$bulk_options}' where
+                post_id = {$postValueId}";
 
-            
+                $update_to_draft_status = mysqli_query($connection, $query);
+                confirmQuery($update_to_draft_status);
+                break;
+
+            case "delete":
+                $query = "delete * from posts set where post_id = {$postValueId}";
+
+                $update_to_delete_status = mysqli_query($connection, $query);
+                confirmQuery($update_to_delete_status);
+                break;
+        
         }
 
     }
