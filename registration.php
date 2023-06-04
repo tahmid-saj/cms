@@ -6,7 +6,13 @@
 <?php
 
 if (isset($_POST["submit"])) {
-    echo "Its working";
+    $username = $_POST["submit"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $username = mysqli_real_escape_string($connection, $username);
+    $email = mysqli_real_escape_string($connection, $email);
+    $password = mysqli_real_escape_string($connection, $password);
 }
 
 ?>
