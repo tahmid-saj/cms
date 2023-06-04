@@ -59,6 +59,9 @@ if (isset($_POST["update_post"])) {
     if (!$update_post) {
         die("Query failed " . mysqli_error($connection));
     }
+
+    echo "<p class='bg-success'>Post updated<a href='../posts.php?p_id={$the_post_id}'>
+    <a href='posts.php'>Edit more posts</a> View post</a></p>";
 }
 
 // if (isset($_POST["create_post"])) {
@@ -135,17 +138,6 @@ if (isset($_POST["update_post"])) {
 
 
         ?>
-
-        $post_id = $row['post_id'];
-    $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
-    $post_category_id = $row['post_category_id'];
-    $post_status = $row['post_status'];
-    $post_image = $row['post_image'];
-    $post_tags = $row['post_tags'];
-    $post_comment_count = $row['post_comment_count'];
-    $post_date = $row['post_date'];
-    $post_content = $row['post_content'];
 
     </select>
     </div>
