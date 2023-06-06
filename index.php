@@ -20,8 +20,10 @@ include "includes/navigation.php";
 
                 <?php 
                     $select_post_query_count = "select * from posts";
-                    $find_count = mysqli_query($connection, $post_query_count);
+                    $find_count = mysqli_query($connection, $select_post_query_count);
                     $count = mysqli_num_rows($find_count);
+
+                    $count = ceil($count / 5);
 
 
                 ?>
@@ -49,6 +51,9 @@ include "includes/navigation.php";
                         </h1>
 
                         <!-- First Blog Post -->
+
+                        <h1><?php echo $count; ?></h1>
+
                         <h2>
                             <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title ?></a>
                         </h2>
@@ -90,6 +95,21 @@ include "includes/navigation.php";
 
         </div>
         <!-- /.row -->
+
+        <ul class="pager">
+
+        <?php
+            for ($i = 1; $i <= $count; $i++) {
+                echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+            }
+
+        ?>
+
+            <li><a href="">1</a></li>
+
+            <li><a href="">2</a></li>
+
+        </ul>
 
         <hr>
 
