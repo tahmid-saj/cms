@@ -20,6 +20,8 @@ include "includes/navigation.php";
 
                 <?php 
 
+                $per_page = 5;
+
                     if (isset($_GET["page"])) {
                         $per_page = 2;
                         $page = $_GET["page"];
@@ -44,7 +46,7 @@ include "includes/navigation.php";
                 ?>
 
             <?php
-                $query = "select * from posts limit {$page1}, 5";
+                $query = "select * from posts limit {$page_1}, 5";
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
@@ -115,7 +117,13 @@ include "includes/navigation.php";
 
         <?php
             for ($i = 1; $i <= $count; $i++) {
-                echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                if ($i == $page) {
+                    echo "<li><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
+                } else {
+                    echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                }
+
+                
             }
 
         ?>
