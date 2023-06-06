@@ -19,6 +19,20 @@ include "includes/navigation.php";
             <div class="col-md-8">
 
                 <?php 
+
+                    if (isset($_GET["page"])) {
+                        $page = $_GET["page"];
+
+                    } else {
+                        $page = "";
+                    }
+
+                    if ($page == "" || $page == 1) {
+                        $page_1 = 0;
+                    } else {
+                        $page_1 = ($page * 5) - 5;
+                    }
+
                     $select_post_query_count = "select * from posts";
                     $find_count = mysqli_query($connection, $select_post_query_count);
                     $count = mysqli_num_rows($find_count);
@@ -29,7 +43,7 @@ include "includes/navigation.php";
                 ?>
 
             <?php
-                $query = "select * from posts limit {$count}";
+                $query = "select * from posts limit {$page1}";
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
