@@ -18,8 +18,16 @@ include "includes/navigation.php";
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 
+                <?php 
+                    $select_post_query_count = "select * from posts";
+                    $find_count = mysqli_query($connection, $post_query_count);
+                    $count = mysqli_num_rows($find_count);
+
+
+                ?>
+
             <?php
-                $query = "select * from posts";
+                $query = "select * from posts limit {$count}";
 
                 $select_all_posts_query = mysqli_query($connection, $query);
 
