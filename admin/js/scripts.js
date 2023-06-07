@@ -4,4 +4,10 @@ $(document).ready(function() {
     });
 });
 
+function loadUsersOnline() {
+    $.get("functions.php?onlineusers=result", function(date) {
+        $(".usersonline").text(date);
+    });
+};
 
+loadUsersOnline();
