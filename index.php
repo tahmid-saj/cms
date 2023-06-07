@@ -20,9 +20,12 @@ include "includes/header.php";
         mysqli_query($connection, "insert into users_online (session, time) values ('{$time}', '{$session}')");
 
     } else {
-        mysqli_query($connection, "insert into users_online (session, time) values ('{$time}', '{$session}')");
+        mysqli_query($connection, "update users_online set time = '{$time}' where session = {$session}");
 
     }
+
+    $users_online_query = mysqli_query($connection, "select * from users_online where time < '$time_out'");
+    $count_user = mysqli_num_rows($users_online_query);
 
 ?>
 
@@ -37,6 +40,10 @@ include "includes/navigation.php";
 
             <!-- Blog Entries Column -->
             <div class="col-md-8">
+
+                <h1>
+                    <?php echo $count_user; ?>
+                </h1>
 
                 <?php 
 
