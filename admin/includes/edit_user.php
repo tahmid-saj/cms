@@ -50,30 +50,37 @@ if (isset($_POST["edit_user"])) {
     // $hashed_password = crypt($user_password, $salt);
 
     if (!empty($user_password)) {
-        $query_password = "select {$user_password} from users where user_id = $user_id";
+        $query_password = "select {$user_password} from users where user_id = $the_user_id";
         $get_user_query = mysqli_query($connection, $query_password) 
         confirmQuery($get_user_query);
 
         $row = mysqli_fetch_array($get_user_query);
         $db_user_password = $row['user_password'];
+
+        if ($db_user_password != $user_password) {
+            $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+        }
+
+        $query = "update users set ";
+        $query .= "user_firstname = '{$user_firstname}', ";
+        $query .= "user_lastname = '{$user_lastname}', ";
+        $query .= "user_role = '{$user_role}', ";
+        $query .= "username = '{$username}', ";
+        $query .= "user_email = '{$user_email}', ";
+        $query .= "user_password = '{$hashed_password}' ";
+        $query .= "where user_id = '{$the_user_id}'";
+
+        $edit_user_query = mysqli_query($connection, $query);
+
+        confirmQuery($edit_user_query);
+
+        if (!$edit_user) {
+            die("Query failed " . mysqli_error($connection));
+        }
+
     }
 
-    $query = "update users set ";
-    $query .= "user_firstname = '{$user_firstname}', ";
-    $query .= "user_lastname = '{$user_lastname}', ";
-    $query .= "user_role = '{$user_role}', ";
-    $query .= "username = '{$username}', ";
-    $query .= "user_email = '{$user_email}', ";
-    $query .= "user_password = '{$hashed_password}' ";
-    $query .= "where user_id = '{$the_user_id}'";
-
-    $edit_user = mysqli_query($connection, $query);
-
-    confirmQuery($edit_user);
-
-    if (!$edit_user) {
-        die("Query failed " . mysqli_error($connection));
-    }
+    
 }
 
 ?>
