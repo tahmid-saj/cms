@@ -33,21 +33,30 @@ if (isset($_POST["edit_user"])) {
     $user_password = $_POST["user_password"];
 
     echo $user_firstname;
-    // $post_date = date("d-m-y");
+    $post_date = date("d-m-y");
     // $post_comment_count = 4;
 
     // move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "select randSalt from users";
-    $select_randsalt_query = mysqli_query($connection, $query);
+    // $query = "select randSalt from users";
+    // $select_randsalt_query = mysqli_query($connection, $query);
 
-    if (!$select_randsalt_query) {
-        die("Query failed" . mysqli_error($connection));
+    // if (!$select_randsalt_query) {
+    //     die("Query failed" . mysqli_error($connection));
+    // }
+
+    // $row = mysqli_fetch_array($select_randsalt_query);
+    // $salt = $row["randSalt"];
+    // $hashed_password = crypt($user_password, $salt);
+
+    if (!empty($user_password)) {
+        $query_password = "select {$user_password} from users where user_id = $user_id";
+        $get_user_query = mysqli_query($connection, $query_password) 
+        confirmQuery($get_user_query);
+
+        $row = mysqli_fetch_array($get_user_query);
+        $db_user_password = $row['user_password'];
     }
-
-    $row = mysqli_fetch_array($select_randsalt_query);
-    $salt = $row["randSalt"];
-    $hashed_password = crypt($user_password, $salt);
 
     $query = "update users set ";
     $query .= "user_firstname = '{$user_firstname}', ";
