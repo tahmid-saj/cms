@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
     $to = $_POST["username"];
     $subject = $_POST["subject"];
     $body = $_POST["body"];
-    $header = $_POST["email"]
+    $header = "From: " . $_POST["email"]
 
     $body = wordwrap($body, 70);
 
