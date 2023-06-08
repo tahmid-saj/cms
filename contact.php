@@ -3,19 +3,16 @@
 
 <?php
 
-$msg = "First line of text\nSecond line of text";
-$msg = wordwrap($msg, 70);
-
 if (isset($_POST["submit"])) {
 
     $to = $_POST["username"];
     $subject = $_POST["subject"];
     $body = $_POST["body"];
-    $header = "From: " . $_POST["email"]
+    $header = "From: " . $_POST["email"];
 
-    $body = wordwrap($body, 70);
+    $msg = wordwrap($body, 70);
 
-    mail($to, $subject, $body, $header);
+    mail($to, $subject, $msg, $header);
 
 
 } else {

@@ -1,4 +1,7 @@
 <?php
+
+include("delete_modal.php");
+
 if (isset($_POST["checkBoxArray"])) {
     foreach(($_POST["checkBoxArray"]) as $postValueId) {
 
@@ -122,7 +125,7 @@ if (isset($_POST["checkBoxArray"])) {
             if (!empty($post_author)) {
             echo "<td>$post_author</td>";
             } elseif (!empty($post_user)) {
-                echo "<td>$post_user</td>"
+                echo "<td>$post_user</td>";
             }
 
             echo "<td>{$post_title}</td>";
@@ -149,7 +152,10 @@ if (isset($_POST["checkBoxArray"])) {
             echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
 
-            echo "<td><a onClick=\"javascript: return confirm('Ar you sure you want to delete');\" href='posts.php?delete={$post_id}'>Delete</a></td>";
+            echo "<td><a rel='$post_id' href='javascript:void(0)' class='delete_link'>Delete</a></td>";
+
+
+            // echo "<td><a onClick=\"javascript: return confirm('Ar you sure you want to delete');\" href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
         }
     ?>
@@ -172,3 +178,18 @@ if (isset($_POST["checkBoxArray"])) {
 include "admin_footer.php";
 ?>
 
+<script>
+    $(document).ready(function() {
+        $(".delete_link").on('click', function() {
+            let id = $(this).attr("rel");
+            let delete_url = "posts.php?delete=" + id + "";
+
+            $(".modal_delete_link").attr("href", delete_url);
+
+            $("#myModal").modal("show");
+
+            alert(delete_url);
+        });
+    });
+
+</script>
