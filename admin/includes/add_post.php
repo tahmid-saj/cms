@@ -2,7 +2,7 @@
 
 if (isset($_POST["create_post"])) {
     $post_title = $_POST["title"];
-    $post_user = $_POST["post_user"];
+    $post_user = escape($_POST["post_user"]);
     $post_category_id = $_POST["post_category"];
     $post_status = $_POST["post_status"];
 

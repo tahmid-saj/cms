@@ -1,5 +1,12 @@
 <?php
 
+// Use this function in any data coming from a form to a db
+function escape($string) {
+    global $connection;
+
+    return mysqli_real_escape_string($connection, trim($string));
+}
+
 
 function users_online() {
 
