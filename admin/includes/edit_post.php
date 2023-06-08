@@ -10,7 +10,7 @@ $select_posts_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $post_id = $row['post_id'];
     $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
+    $post_user = $row['post_user'];
     $post_category_id = $row['post_category_id'];
     $post_status = $row['post_status'];
     $post_image = $row['post_image'];
@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 
 if (isset($_POST["update_post"])) {
     $post_title = $_POST['post_title'];
-    $post_author = $_POST['post_author'];
+    $post_user = $_POST['post_user'];
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
     $post_image = $_FILES['image']['name'];
@@ -45,7 +45,7 @@ if (isset($_POST["update_post"])) {
     $query .= "post_title = '{$post_title}', ";
     $query .= "post_category_id = '{$post_category_id}', ";
     $query .= "post_date = now(), ";
-    $query .= "post_author = '{$post_author}', ";
+    $query .= "post_user = '{$post_user}', ";
     $query .= "post_status = '{$post_status}', ";
     $query .= "post_tags = '{$post_tags}', ";
     $query .= "post_content = '{$post_content}', ";
@@ -66,7 +66,7 @@ if (isset($_POST["update_post"])) {
 
 // if (isset($_POST["create_post"])) {
 //     $post_title = $_POST["title"];
-//     $post_author = $_POST["author"];
+//     $post_user = $_POST["author"];
 //     $post_category_id = $_POST["post_category_id"];
 //     $post_status = $_POST["post_status"];
 
@@ -80,10 +80,10 @@ if (isset($_POST["update_post"])) {
 
 //     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-//     $query = "insert into posts(post_category_id, post_title, post_author, post_date, post_image, 
+//     $query = "insert into posts(post_category_id, post_title, post_user, post_date, post_image, 
 //     post_content, post_tags, post_comment_count, post_status) ";
 
-//     $query .= "values ('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}',
+//     $query .= "values ('{$post_category_id}', '{$post_title}', '{$post_user}', now(), '{$post_image}',
 //     '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}')";
 
 //     $create_post_query = mysqli_query($connection, $query);
@@ -101,6 +101,7 @@ if (isset($_POST["update_post"])) {
     </div>
 
     <div class="form-group">
+    <label for="categories">Categories</label>
         <select name="post_category" id="post_category">
             <?php
                 $query = "select * from categories";
@@ -121,9 +122,32 @@ if (isset($_POST["update_post"])) {
     </div>
 
     <div class="form-group">
-        <label for="author">Post Author</label>
-        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="post_author">
+        
+        <label for="category">Users</label>
+
+        <select name="post_user" id="post_user">
+            <?php
+                $users_query = "select * from users";
+                $select_users = mysqli_query($connection, $users_query);
+
+                confirmQuery($select_users);
+    
+                while ($row = mysqli_fetch_assoc($select_users)) {
+                    $user_id = $row['user_id'];
+                    $username = $row['username'];
+
+                    echo "<option value='{$username}'>{$username}</option>";
+
+                }
+
+            ?>
+        </select>
     </div>
+
+    <!-- <div class="form-group">
+        <label for="author">Post Author</label>
+        <input value="<?php echo $post_user; ?>" type="text" class="form-control" name="post_user">
+    </div> -->
 
     <div class="form-group">
     <select name="post_status" id="">
