@@ -61,7 +61,7 @@ if (isset($_POST["checkBoxArray"])) {
         <tr>
             <th> <input id="selectAllBoxes" type="checkbox"></input> </th>
             <th>Id</th>
-            <th>Author</th>
+            <th>Users</th>
             <th>Title</th>
             <th>Category</th>
             <th>Status</th>
@@ -119,10 +119,10 @@ if (isset($_POST["checkBoxArray"])) {
 
             echo "<td>{$post_id}</td>";
             
-            if (isset($post_author) || !empty($post_author)) {
-                echo "<td>$post_author</td>";
-            } elseif (isset($post_user) || !empty($post_user)) {
-                echo "<td></td>"
+            if (!empty($post_author)) {
+            echo "<td>$post_author</td>";
+            } elseif (!empty($post_user)) {
+                echo "<td>$post_user</td>"
             }
 
             echo "<td>{$post_title}</td>";

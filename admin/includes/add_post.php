@@ -16,10 +16,10 @@ if (isset($_POST["create_post"])) {
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "insert into posts(post_category_id, post_title, post_author, post_date, post_image, 
+    $query = "insert into posts(post_category_id, post_title, post_user, post_date, post_image, 
     post_content, post_tags, post_status) ";
 
-    $query .= "values ('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}',
+    $query .= "values ('{$post_category_id}', '{$post_title}', '{$post_user}', now(), '{$post_image}',
     '{$post_content}', '{$post_tags}', '{$post_status}')";
 
     $create_post_query = mysqli_query($connection, $query);
@@ -74,7 +74,7 @@ if (isset($_POST["create_post"])) {
                     $user_id = $row['user_id'];
                     $username = $row['username'];
 
-                    echo "<option value='{$user_id}'>{$username}</option>";
+                    echo "<option value='{$username}'>{$username}</option>";
 
                 }
 
