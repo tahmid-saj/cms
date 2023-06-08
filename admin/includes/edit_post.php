@@ -126,6 +126,9 @@ if (isset($_POST["update_post"])) {
         <label for="category">Users</label>
 
         <select name="post_user" id="post_user">
+
+        <?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
+
             <?php
                 $users_query = "select * from users";
                 $select_users = mysqli_query($connection, $users_query);
