@@ -6,42 +6,13 @@
 <?php
 
 if (isset($_POST["submit"])) {
-    $username = $_POST["submit"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
 
-    if (!empty($username) && !empty($email) && !empty($password)) {
-        $username = mysqli_real_escape_string($connection, $username);
-        $email = mysqli_real_escape_string($connection, $email);
-        $password = mysqli_real_escape_string($connection, $password);
+    $to = $_POST["username"];
+    $subject = $_POST["subject"];
+    $body = $_POST["body"];
 
-        $password = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
-    
-        // $query = "select randSalt from users ";
-        // $select_randsalt_query = mysqli_query($connection, $query);
-    
-        // if (!$select_randsalt_query) {
-        //     die("Query failed" . mysqli_error($connection));
-    
-        // }
-    
-        // $row = mysqli_fetch_array($select_randsalt_query);
-        // $salt = $row["randSalt"];
-        // $password = crypt($password, $salt);
-    
-        $query = "insert into users (username, user_email, user_password, user_role) ";
-        $query .= "values('{$username}', '{$email}', '{$password}', 'subscriber')";
-        $register_user_query = mysqli_query($connection, $query);
-    
-        if (!$register_user_query) {
-            die("Query failed " . mysqli_error($connection) . " " > mysqli_errno($connection));
-        }
-
-        $message = "Your registration has been submitted";
-    } else {
-        $message = "Fields cannot be empty";
-    }
 } else {
+
     $message = "";
 }
 
@@ -71,7 +42,7 @@ if (isset($_POST["submit"])) {
 
                         <div class="form-group">
                             <label for="password" class="sr-only">Subject</label>
-                            <input type="subject" name="subject" id="key" class="form-control" placeholder="Enter your subject">
+                            <input type="text" name="subject" id="key" class="form-control" placeholder="Enter your subject">
                         </div>
 
                         <div class="form-group">
