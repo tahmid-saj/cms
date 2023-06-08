@@ -1,15 +1,22 @@
-
-
 <?php  include "includes/db.php"; ?>
  <?php  include "includes/header.php"; ?>
 
 <?php
+
+$msg = "First line of text\nSecond line of text";
+$msg = wordwrap($msg, 70);
 
 if (isset($_POST["submit"])) {
 
     $to = $_POST["username"];
     $subject = $_POST["subject"];
     $body = $_POST["body"];
+    $header = $_POST["email"]
+
+    $body = wordwrap($body, 70);
+
+    mail($to, $subject, $body, $header);
+
 
 } else {
 
