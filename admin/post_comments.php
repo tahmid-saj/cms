@@ -39,7 +39,7 @@
 <tbody>
 
     <?php
-        $query = "select * from comments where comment_post_id = " . mysqli_real_escape_string($connection, $_GET["id"]);
+        $query = "select * from comments where comment_post_id = " . mysqli_real_escape_string($connection, $_GET["id"] . "");
         $select_comments = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_comments)) {
@@ -83,7 +83,7 @@
             echo "<td>{$comment_date}</td>";
             echo "<td><a href='comments.php?approve=$comment_id'>Approve</a></td>";
             echo "<td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>";
-            echo "<td><a href='comments.php?delete=$comment_id'>Delete</a></td>";
+            echo "<td><a href='post_comments.php?delete=$comment_id&id=' . $_GET['id'] . ''>Delete</a></td>";
             echo "</tr>";
         }
     ?>
@@ -118,7 +118,7 @@
         $query = "delete from comments where comment_id = {$the_comment_id}";
         $delete_query = mysqli_query($connection, $query);
 
-        header("Location: comments.php");
+        header("Location: post_comments.php?id=" . $_GET["id"] . "");
 
 
 
