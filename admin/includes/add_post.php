@@ -2,7 +2,7 @@
 
 if (isset($_POST["create_post"])) {
     $post_title = $_POST["title"];
-    $post_author = $_POST["author"];
+    $post_user = $_POST["post_user"];
     $post_category_id = $_POST["post_category"];
     $post_status = $_POST["post_status"];
 
@@ -63,10 +63,10 @@ if (isset($_POST["create_post"])) {
         
         <label for="category">Users</label>
 
-        <select name="post_category" id="post_category">
+        <select name="post_user" id="post_user">
             <?php
-                $query = "select * from users";
-                $select_users = mysqli_query($connection, $query);
+                $users_query = "select * from users";
+                $select_users = mysqli_query($connection, $users_query);
 
                 confirmQuery($select_users);
     

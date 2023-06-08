@@ -89,6 +89,7 @@ if (isset($_POST["checkBoxArray"])) {
             $post_id = $row['post_id'];
             $post_title = $row['post_title'];
             $post_author = $row['post_author'];
+            $post_user = $row['post_user'];
             $post_category_id = $row['post_category_id'];
             $post_status = $row['post_status'];
             $post_image = $row['post_image'];
@@ -117,7 +118,16 @@ if (isset($_POST["checkBoxArray"])) {
             <?php
 
             echo "<td>{$post_id}</td>";
+            
+            if (isset($post_author) || !empty($post_author)) {
+                echo "<td>$post_author</td>";
+            } elseif (isset($post_user) || !empty($post_user)) {
+                echo "<td></td>"
+            }
+
             echo "<td>{$post_title}</td>";
+
+
             echo "<td>{$post_author}</td>";
             
             echo "<td>{$post_status}</td>";
